@@ -1,5 +1,6 @@
 package com.springboot.jpa_hibernate.service;
 
+import com.springboot.jpa_hibernate.model.Project;
 import com.springboot.jpa_hibernate.model.Role;
 import com.springboot.jpa_hibernate.repository.IRoleJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class RoleService {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-
     }
 
     public ResponseEntity<ArrayList<Role>> allRole(){
@@ -31,7 +31,7 @@ public class RoleService {
 
     public ResponseEntity<String> deleteRole(Long id){
         try {
-            if (roleRepository.existsById(id)){
+            if (roleRepository.existsById(id)){ //Si el id existe en la BD, entonces entra al if
                 roleRepository.deleteById(id);
                 return new ResponseEntity<>("El Role con id: "+id+" se elimino.",HttpStatus.OK);
             }
@@ -50,6 +50,19 @@ public class RoleService {
             return new ResponseEntity<>(roleRepository.save(roleSave), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<Role> getRoleById(Long id){
+        try {
+            Optional<Role> roleById = roleRepository.findById(id);
+
+            if(roleById.isPresent()){ //Si el id de role que le pasamos por parametro se encuentra en nustra BD entra.
+                return new ResponseEntity<>(roleById.get(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
 }

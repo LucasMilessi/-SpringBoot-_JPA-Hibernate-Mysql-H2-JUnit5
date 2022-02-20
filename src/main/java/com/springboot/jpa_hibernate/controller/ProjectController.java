@@ -34,4 +34,9 @@ public class ProjectController {
     public ResponseEntity<Project> updateProject(@PathVariable("id") Long id, @RequestBody Project project){
         return projectService.updateProject(id, project);
     }
+
+    @GetMapping(path = ("/project/getById/{id}"))
+    public ResponseEntity<Project> getProjectById(@PathVariable("id") Long id){
+        return projectService.getProjectById(id);
+    }
 }

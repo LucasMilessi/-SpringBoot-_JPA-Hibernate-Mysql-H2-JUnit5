@@ -39,4 +39,9 @@ public class EmployeeController {
     public ResponseEntity<String> asignProjectToEmployee(@PathVariable("idE") Long idEmployee, @PathVariable("idP") Long idProject){
         return employeeService.asignProjectToEmployee(idEmployee, idProject);
     }
+
+    @GetMapping(path = "/employee/getById/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id){
+        return employeeService.getEmployeeById(id);
+    }
 }

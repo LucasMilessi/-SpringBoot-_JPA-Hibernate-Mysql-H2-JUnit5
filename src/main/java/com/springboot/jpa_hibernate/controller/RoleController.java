@@ -1,5 +1,6 @@
 package com.springboot.jpa_hibernate.controller;
 
+import com.springboot.jpa_hibernate.model.Project;
 import com.springboot.jpa_hibernate.model.Role;
 import com.springboot.jpa_hibernate.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class RoleController {
     @PutMapping(path = "/role/update/{id}")
     public ResponseEntity<Role> updateRole(@PathVariable("id") Long id, @RequestBody Role role){
         return roleService.updateRole(id, role);
+    }
+
+    @GetMapping(path = ("/role/getById/{id}"))
+    public ResponseEntity<Role> getRoleById(@PathVariable("id") Long id){
+        return roleService.getRoleById(id);
     }
 
 }

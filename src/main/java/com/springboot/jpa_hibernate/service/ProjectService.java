@@ -1,5 +1,6 @@
 package com.springboot.jpa_hibernate.service;
 
+import com.springboot.jpa_hibernate.model.Employee;
 import com.springboot.jpa_hibernate.model.Project;
 import com.springboot.jpa_hibernate.repository.IProjectJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,18 @@ public class ProjectService {
             return new ResponseEntity<>(projectRepository.save(projectSave), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<Project> getProjectById(Long id){
+        try {
+            Optional<Project> projectById = projectRepository.findById(id);
+
+            if(projectById.isPresent()){
+                return new ResponseEntity<>(projectById.get(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
 }

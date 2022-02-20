@@ -62,10 +62,10 @@ public class EmployeeService {
             Employee employeeSave = employee.get();
             Project projectSave = project.get();
 
-            if (employee.isPresent() && project.isPresent()){
+            if (employee.isPresent() && project.isPresent()){ //Si el id de employee y el id project se encuntran en la BD entra al if.
 
-                employeeSave.getProjects().add(projectSave);
-                employeeRepository.save(employeeSave);
+                employeeSave.getProjects().add(projectSave); //Agrega el project a la List<Project> que se encuntra en la clase de Employee
+                employeeRepository.save(employeeSave); //Guardamos el employee con el project asignado anteriormente.
 
                 return new ResponseEntity<>("Se agrego el project con nombre: "+projectSave.getName()+
                         " a el employee "+employeeSave.getFirstName()+" id: "+ employeeSave.getId(), HttpStatus.OK);
@@ -75,7 +75,18 @@ public class EmployeeService {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
+    }
 
+    public ResponseEntity<Employee> getEmployeeById(Long id){
+        try {
+            Optional<Employee> employeeById = employeeRepository.findById(id);
 
+            if(employeeById.isPresent()){
+                return new ResponseEntity<>(employeeById.get(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
     }
 }
