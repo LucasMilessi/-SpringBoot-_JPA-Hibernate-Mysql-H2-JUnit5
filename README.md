@@ -38,5 +38,14 @@ updateProject
 updateRole
 ![](https://github.com/LucasMilessi/-SpringBoot-_JPA-Hibernate-Mysql-H2-JUnit5/blob/main/image/updateRole.png)
 
+getEmployeeById
+![](https://github.com/LucasMilessi/-SpringBoot-_JPA-Hibernate-Mysql-H2-JUnit5/blob/main/image/getEmployeeById.png)
+
+getProjectById
+![](https://github.com/LucasMilessi/-SpringBoot-_JPA-Hibernate-Mysql-H2-JUnit5/blob/main/image/getProjectById.png)
+
+getRoleById
+![](https://github.com/LucasMilessi/-SpringBoot-_JPA-Hibernate-Mysql-H2-JUnit5/blob/main/image/getRoleById.png)
+
 
 
